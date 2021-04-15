@@ -5,6 +5,7 @@ from the contents of the web_static folder of your AirBnB Clone repo
 """
 import fabric.api
 import datetime
+import os.path
 
 
 def do_pack():
@@ -14,7 +15,9 @@ def do_pack():
     create_time = datetime.datetime.utcnow().strftime("%Y%m%d%H%M%S")
     file_name = "versions/web_static_{}.tgz".format(create_time)
     try:
-        fabric.api.local("mkdir -p /versions")
+        if os.path.isdir("versions") is False:
+            fabric.api.local("mkdir -p /versions")
+
         fabric.api.local("tar -cvzf {} web_static".format(file_name))
         return file_name
     except:
