@@ -4,13 +4,13 @@ Fabric script (based on the file 1-pack_web_static.py) that distributes an
 archive to a web servers
 """
 import datetime
-import os.path
+from os.path import exists
 from fabric.api import put, run, env
 
 env.hosts = ["3.89.119.219", "35.185.52.50"]
 
 
-def do_deploy(archive_path) is False:
+def do_deploy(archive_path):
     """
     Distribute an archive to a web server
     """
